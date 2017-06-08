@@ -31,7 +31,7 @@ and blocks all-at-once and do not need to implement any sort of
 buffering or reassembly.
 
 Prerequisites
-+++++++++++++
+-------------
 
 The AMQP feature in Zcash requires `Qpid Proton <https://qpid.apache.org/proton/>`_
 version 0.17 or newer, which you will need to install if you are not
@@ -43,7 +43,7 @@ also install *python-qpid-proton*, though this is not necessary for
 daemon operation.
 
 Enabling
-++++++++
+--------
 
 By default, the AMQP feature is automatically compiled in if the
 necessary prerequisites are found.  To disable, use --disable-proton
@@ -57,7 +57,7 @@ To actually enable operation, one must set the appropriate options on
 the commandline or in the configuration file.
 
 Usage
-+++++
+-----
 
 AMQP support is currently an experimental feature, so you must pass
 the option:
@@ -109,7 +109,7 @@ Please see ``contrib/amqp/amqp_sub.py`` for a working example of an
 AMQP server listening for messages.
 
 Remarks
-+++++++
+-------
 
 From the perspective of zcashd, the local end of an AMQP link is write-only.
 

@@ -1,5 +1,5 @@
-Security Warnings
-====================
+Advanced Security Warnings
+==========================
 
 Security Audit
 --------------
@@ -11,7 +11,7 @@ https://z.cash/support/security.html
 x86-64 Linux Only
 -----------------------
 
-There are [known bugs](https://github.com/scipr-lab/libsnark/issues/26) which
+There are `known bugs <https://github.com/scipr-lab/libsnark/issues/26>`_ which
 make proving keys generated on 64-bit systems unusable on 32-bit and big-endian
 systems. It's unclear if a warning will be issued in this case, or if the
 proving system will be silently compromised.
@@ -35,7 +35,7 @@ Wallet encryption is disabled, for several reasons:
   from the earlier issue).
 
 - We were concerned about the resistance of the algorithm used to derive wallet
-  encryption keys (inherited from [Bitcoin](https://bitcoin.org/en/secure-your-wallet))
+  encryption keys (inherited from `Bitcoin <https://bitcoin.org/en/secure-your-wallet>`_)
   to dictionary attacks by a powerful attacker. If and when we re-enable wallet 
   encryption, it is likely to be with a modern passphrase-based key derivation 
   algorithm designed for greater resistance to dictionary attack, such as Argon2i.
@@ -49,8 +49,8 @@ Side-Channel Attacks
 
 This implementation of Zcash is not resistant to side-channel attacks. You
 should assume (even unprivileged) users who are running on the hardware, or who
-are physically near the hardware, that your `zcashd` process is running on will
-be able to:
+are physically near the hardware, that your ``zcashd`` process is running on
+will be able to:
 
 - Determine the values of your secret spending keys, as well as which notes you
   are spending, by observing cache side-channels as you perform a JoinSplit
@@ -64,7 +64,7 @@ be able to:
   each note ciphertext on the blockchain.
 
 You should ensure no other users have the ability to execute code (even
-unprivileged) on the hardware your `zcashd` process runs on until these
+unprivileged) on the hardware your ``zcashd`` process runs on until these
 vulnerabilities are fully analyzed and fixed.
 
 REST Interface
@@ -91,9 +91,9 @@ Receivers of funds from a JoinSplit can mitigate the risk of relying on funds re
 Logging z_* RPC calls
 ---------------------
 
-The option `-debug=zrpc` covers logging of the z_* calls.  This will reveal information about private notes which you might prefer not to disclose.  For example, when calling `z_sendmany` to create a shielded transaction, input notes are consumed and new output notes are created.
+The option ``-debug=zrpc`` covers logging of the z_* calls.  This will reveal information about private notes which you might prefer not to disclose.  For example, when calling ``z_sendmany`` to create a shielded transaction, input notes are consumed and new output notes are created.
 
-The option `-debug=zrpcunsafe` covers logging of sensitive information in z_* calls which you would only need for debugging and audit purposes.  For example, if you want to examine the memo field of a note being spent.
+The option ``-debug=zrpcunsafe`` covers logging of sensitive information in z_* calls which you would only need for debugging and audit purposes.  For example, if you want to examine the memo field of a note being spent.
 
 Private spending keys for z addresses are never logged.
 
@@ -105,6 +105,6 @@ potential mistakes in our modifications to Bitcoin Core, it is also possible
 that there were potential changes we were supposed to make to Bitcoin Core but
 didn't, either because we didn't even consider making those changes, or we ran
 out of time. We have brainstormed and documented a variety of such possibilities
-in [issue #826](https://github.com/zcash/zcash/issues/826), and believe that we
+in `issue #826 <https://github.com/zcash/zcash/issues/826>`_, and believe that we
 have changed or done everything that was necessary for the 1.0.0 launch. Users
 may want to review this list themselves.
