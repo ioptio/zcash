@@ -1,6 +1,7 @@
-# Block and Transaction Broadcasting With AMQP 1.0 (Experimental Feature)
+Block and Transaction Broadcasting With AMQP 1.0 (Experimental Feature)
+=======================================================================
 
-[AMQP](https://www.amqp.org/) is an enterprise-level message queuing
+`AMQP <https://www.amqp.org/>`_ is an enterprise-level message queuing
 protocol for the reliable passing of real-time data and business
 transactions between applications.  AMQP supports both broker and
 brokerless messaging.  AMQP 1.0 is an open standard and has been
@@ -29,9 +30,10 @@ Because AMQP is message oriented, subscribers receive transactions
 and blocks all-at-once and do not need to implement any sort of
 buffering or reassembly.
 
-## Prerequisites
+Prerequisites
++++++++++++++
 
-The AMQP feature in Zcash requires [Qpid Proton](https://qpid.apache.org/proton/)
+The AMQP feature in Zcash requires `Qpid Proton <https://qpid.apache.org/proton/>`_
 version 0.17 or newer, which you will need to install if you are not
 using the depends system. Typically, it is packaged by distributions as
 something like *libqpid-proton*. The C++ wrapper for AMQP *is* required.
@@ -40,30 +42,38 @@ In order to run the example Python client scripts in contrib/ one must
 also install *python-qpid-proton*, though this is not necessary for
 daemon operation.
 
-## Enabling
+Enabling
+++++++++
 
 By default, the AMQP feature is automatically compiled in if the
 necessary prerequisites are found.  To disable, use --disable-proton
 during the *configure* step of building zcashd:
 
-    $ ./configure --disable-proton (other options)
+.. code-block::
+   
+  $ ./configure --disable-proton (other options)
 
 To actually enable operation, one must set the appropriate options on
 the commandline or in the configuration file.
 
-## Usage
+Usage
++++++
 
 AMQP support is currently an experimental feature, so you must pass
 the option:
 
-    -experimentalfeatures
+.. code-block::
+   
+  -experimentalfeatures
 
 Currently, the following notifications are supported:
 
-    -amqppubhashtx=address
-    -amqppubhashblock=address
-    -amqppubrawblock=address
-    -amqppubrawtx=address
+.. code-block::
+   
+  -amqppubhashtx=address
+  -amqppubhashblock=address
+  -amqppubrawblock=address
+  -amqppubrawtx=address
 
 The address must be a valid AMQP address, where the same address can be
 used in more than notification.  Note that SSL and SASL addresses are
@@ -71,30 +81,35 @@ not currently supported.
 
 Launch zcashd like this:
 
-    $ zcashd -amqppubhashtx=amqp://127.0.0.1:5672
+.. code-block::
+   
+  $ zcashd -amqppubhashtx=amqp://127.0.0.1:5672
 
 Or this:
 
-    $ zcashd -amqppubhashtx=amqp://127.0.0.1:5672 \
-        -amqppubrawtx=amqp://127.0.0.1:5672 \
-        -amqppubrawblock=amqp://127.0.0.1:5672 \
-        -amqppubhashblock=amqp://127.0.0.1:5672 \
-        -debug=amqp
+.. code-block::
+  
+  $ zcashd -amqppubhashtx=amqp://127.0.0.1:5672 \
+    -amqppubrawtx=amqp://127.0.0.1:5672 \
+    -amqppubrawblock=amqp://127.0.0.1:5672 \
+    -amqppubhashblock=amqp://127.0.0.1:5672 \
+    -debug=amqp
 
-The debug category `amqp` enables AMQP-related logging.
+The debug category ``amqp`` enables AMQP-related logging.
 
 Each notification has a topic and body, where the header corresponds
-to the notification type. For instance, for the notification `-amqpubhashtx`
-the topic is `hashtx` (no null terminator) and the body is the hexadecimal
+to the notification type. For instance, for the notification ``-amqpubhashtx``
+the topic is ``hashtx`` (no null terminator) and the body is the hexadecimal
 transaction hash (32 bytes).  This transaction hash and the block hash
-found in `hashblock` are in RPC byte order.
+found in ``hashblock`` are in RPC byte order.
 
 These options can also be provided in zcash.conf.
 
-Please see `contrib/amqp/amqp_sub.py` for a working example of an
+Please see ``contrib/amqp/amqp_sub.py`` for a working example of an
 AMQP server listening for messages.
 
-## Remarks
+Remarks
++++++++
 
 From the perspective of zcashd, the local end of an AMQP link is write-only.
 
