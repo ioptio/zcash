@@ -1,5 +1,19 @@
+.. Zcash documentation master file, created by
+   sphinx-quickstart on Tue Jun 20 17:48:24 2017.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
 Zcash 1.0.9
-=============
+=================================
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    security-warnings.rst
+    amqp.rst
+    authors.rst
+    
 
 What is Zcash?
 --------------
@@ -18,7 +32,7 @@ blockchain has reached a significant size.
 Security Warnings
 -----------------
 
-Before using, be sure to read the `privacy and security recommendations <privacy-security-recommendations.md>`_.
+Before using, be sure to read the `privacy and security recommendations <privacy-security-recommendations.rst>`_.
 
 Advanced users may read the `Advanced security warnings <security-warnings.rst>`_.
 
@@ -35,25 +49,31 @@ height and can be explicitly disabled.
 Where do I begin?
 -----------------
 
-You can install the official Zcash client from https://z.cash/download.html
+You can install the official Zcash client or find third-party wallets at https://z.cash/download.html
 
 Need Help
 ---------
 
-* See the documentation at the `Zcash Wiki <https://github.com/zcash/zcash/wiki>`_
-  for help and more information.
-* Ask for help on the `Zcash <https://forum.z.cash/>`_ forum.
+* Start with the `FAQ <https://z.cash/support/faq.html>`_
+* Ask for help:
+    
+  * `Zcash forum <https://forum.z.cash/>`_
+  * `Zcash Community chat <https://chat.zcashcommunity.com/>`_
 
 Participation in the Zcash project is subject to a
-`Code of Conduct <code_of_conduct.md>`_.
-
-Building
---------
-
-Build Zcash along with most dependencies from source by running
-``./zcutil/build.sh``. Currently only Linux is officially supported.
+`Code of Conduct <code_of_conduct.md>`_. Note that the Zcash forum and Zcash Community chat have adopted a related set of `Guidelines <https://forum.z.cash/faq>`_.
 
 License
 -------
 
 For license information see the file `COPYING <COPYING>`_.
+
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
