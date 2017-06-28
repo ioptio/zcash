@@ -3,16 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
 Zcash 1.0.9
 =================================
-
-.. toctree::
-    :maxdepth: 2
-    :caption: Contents:
-
-    security-warnings.rst
-    amqp.rst
-    authors.rst
     
 
 What is Zcash?
@@ -77,3 +70,12 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+  
+.. toctree::
+    :maxdepth: 2
+    :caption: Contents:
+
+    security-warnings.rst
+    amqp.rst
+    authors.rst
