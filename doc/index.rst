@@ -61,21 +61,23 @@ License
 
 For license information see the file `COPYING <COPYING>`_.
 
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
   
 .. toctree::
     :maxdepth: 2
-    :caption: Contents:
+    :caption: User Documentation
 
+    wallet-backup.rst
+    tor.rst
     security-warnings.rst
+     
+.. toctree::
+    :maxdepth: 2
+    :caption: Developer Documentation
+
     amqp.rst
+
+.. toctree::
+    :maxdepth: 2
+    :caption: About Zcash
+
     authors.rst
