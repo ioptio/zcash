@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 
-Zcash 1.0.9
+Zcash 1.0.11
 =================================
     
 
@@ -63,20 +63,24 @@ For license information see the file `COPYING <COPYING>`_.
 
   
 .. toctree::
+    :hidden:
     :maxdepth: 2
     :caption: User Documentation
 
+    payment-api.rst
     wallet-backup.rst
     tor.rst
     security-warnings.rst
      
 .. toctree::
+    :hidden:
     :maxdepth: 2
     :caption: Developer Documentation
 
     amqp.rst
 
 .. toctree::
+    :hidden:
     :maxdepth: 2
     :caption: About Zcash
 

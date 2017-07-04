@@ -1,53 +1,78 @@
-# Zcash Payment API
-
-## Overview
+Zcash Payment API
+=================
+Overview
+---------
 
 Zcash extends the Bitcoin Core API with new RPC calls to support private Zcash payments.
 
 Zcash payments make use of two address formats:
 
-* taddr - an address for transparent funds (just like a Bitcoin address, value stored in UTXOs)
-* zaddr - an address for private funds (value stored in objects called notes)
+taddr  an address for transparent funds (just like a Bitcoin address,
+       value stored in UTXOs)
+zaddr  an address for private funds (value stored in objects called notes)
 
 When transferring funds from one taddr to another taddr, you can use either the existing Bitcoin RPC calls or the new Zcash RPC calls.
 
 When a transfer involves zaddrs, you must use the new Zcash RPC calls.
 
 
-## Compatibility with Bitcoin Core
+Compatibility with Bitcoin Core
+-------------------------------
 
 Zcash supports all commands in the Bitcoin Core API (as of version 0.11.2).   Where applicable, Zcash will extend commands in a backwards-compatible way to enable additional functionality.
 
 We do not recommend use of accounts which are now deprecated in Bitcoin Core.  Where the account parameter exists in the API, please use “” as its value, otherwise an error will be returned.
 
-To support multiple users in a single node’s wallet, consider using getnewaddress or z_getnewaddress to obtain a new address for each user.  Also consider mapping multiple addresses to each user.
+To support multiple users in a single node’s wallet, consider using ``getnewaddress`` or ``z_getnewaddress`` to obtain a new address for each user.  Also consider mapping multiple addresses to each user.
 
-## List of Zcash API commands
+List of Zcash API commands
+--------------------------
 
 Optional parameters are denoted in [square brackets].
 
 RPC calls by category:
 
-* Accounting: z_getbalance, z_gettotalbalance
-* Addresses : z_getnewaddress, z_listaddresses, z_validateaddress
-* Keys : z_exportkey, z_importkey, z_exportwallet, z_importwallet
-* Operation: z_getoperationresult, z_getoperationstatus, z_listoperationids
-* Payment : z_listreceivedbyaddress, z_sendmany
+* Accounting: ``z_getbalance``, ``z_gettotalbalance``
+* Addresses : ``z_getnewaddress``, ``z_listaddresses``, ``z_validateaddress``
+* Keys : ``z_exportkey``, ``z_importkey``, ``z_exportwallet``, ``z_importwallet``
+* Operation: ``z_getoperationresult``, ``z_getoperationstatus``, ``z_listoperationids``
+* Payment : ``z_listreceivedbyaddress``, ``z_sendmany``
 
 RPC parameter conventions:
 
-* taddr : Transparent address
-* zaddr : Private address
-* address : Accepts both private and transparent addresses.
-* amount : JSON format double-precision number with 1 ZC expressed as 1.00000000.
-* memo : Metadata expressed in hexadecimal format.  Limited to 512 bytes, the current size of the memo field of a private transaction.  Zero padding is automatic.
+taddr    Transparent address
+zaddr    Private address
+address  Accepts both private and transparent addresses.
+amount   JSON format double-precision number with 1 ZC expressed as 1.00000000.
+memo     Metadata expressed in hexadecimal format.  Limited to 512 bytes,
+         the current size of the memo field of a private transaction.  Zero
+         padding is automatic.
 
-### Accounting
+Accounting
+~~~~~~~~~~
 
-Command | Parameters | Description
---- | --- | ---
-z_getbalance<br>| address [minconf=1] | Returns the balance of a taddr or zaddr belonging to the node’s wallet.<br><br>Optionally set the minimum number of confirmations a private or transaction transaction must have in order to be included in the balance.  Use 0 to count unconfirmed transactions.
-z_gettotalbalance<br>| [minconf=1] | Return the total value of funds stored in the node’s wallet.<br><br>Optionally set the minimum number of confirmations a private or transparent transaction must have in order to be included in the balance.  Use 0 to count unconfirmed transactions.<br><br>Output:<br>{<br>"transparent" : 1.23,<br>"private" : 4.56,<br>"total" : 5.79}
++-----------------------+---------------------+-------------------------------------------------------------+
+| Command               | Parameters          | Description                                                 |
++=======================+=====================+=============================================================+
+| ``z_getbalance``      | address [minconf=1] | Returns the balance of a taddr or zaddr belonging to the    |
+|                       |                     | node’s wallet.<br><br>Optionally set the minimum number of  |
+|                       |                     | confirmations a private or transaction transaction must     |
+|                       |                     | have in order to be included in the balance.  Use 0 to      |
+|                       |                     | count unconfirmed transactions.                             |
++-----------------------+---------------------+-------------------------------------------------------------+
+| ``z_gettotalbalance`` | [minconf=1]         | Return the total value of funds stored in the node’s        |
+|                       |                     | wallet.                                                     |
+|                       |                     | Optionally set the minimum number of confirmations a        |
+|                       |                     | private or transparent transaction must have in order to be |
+|                       |                     | included in the balance.  Use 0 to count unconfirmed        |
+|                       |                     | transactions.                                               |
+|                       |                     | Output:                                                     |
+|                       |                     | {                                                           |
+|                       |                     |   "transparent" : 1.23,                                     |
+|                       |                     |   "private" : 4.56,                                         |
+|                       |                     |   "total" : 5.79                                            |
+|                       |                     | }                                                           |
++-----------------------+---------------------+-------------------------------------------------------------+
 
 ### Addresses
 
