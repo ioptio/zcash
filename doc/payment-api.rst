@@ -82,13 +82,35 @@ Accounting
 |                   |                     |                                                             |
 +-------------------+---------------------+-------------------------------------------------------------+
 
+.. list-table::
+   :widths: 15 15 30
+   :header-rows: 1
+
+   * - Command
+     - Parameters
+     - Description
+   * - z_getbalance
+     - address [minconf=1]
+     - Returns the balance of a taddr or zaddr belonging to the node’s wallet.
+       Optionally set the minimum number of confirmations a private or transaction
+       must have in order to be included in the balance. Use 0 to count unconfirmed
+       transactions.
+   * - z_gettotalbalance
+     - [minconf=1]
+     - Return the total value of funds stored in the node’s wallet.
+       Optionally set the minimum number of confirmations a private or transparent
+       transaction must have in order to be included in the balance. Use 0 to count
+       unconfirmed transactions.
+       Output:
+       |z_gettotalbalance output| 
+
 .. |z_gettotalbalance output| replace::
    {
        "transparent" : 1.23,
        "private" : 4.56,
        "total" : 5.79
    } 
-
+       
 ### Addresses
 
 Command | Parameters | Description
