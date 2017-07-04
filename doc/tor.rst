@@ -14,24 +14,27 @@ The following directions assume you have a Tor proxy running on port 9050. Many 
 The first step is running Zcash behind a Tor proxy. This will already make all
 outgoing connections be anonymized, but more is possible.
 
--proxy=ip:port  Set the proxy server. If SOCKS5 is selected (default), this proxy
-	        server will be used to try to reach .onion addresses as well.
+-proxy=ip:port
+  Set the proxy server. If SOCKS5 is selected (default), this proxy
+  server will be used to try to reach .onion addresses as well.
 
--onion=ip:port  Set the proxy server to use for Tor hidden services. You do not
-	        need to set this if it's the same as -proxy. You can use ``-noonion``
-	        to explicitly disable access to hidden service.
+-onion=ip:port
+  Set the proxy server to use for Tor hidden services. You do not
+  need to set this if it's the same as -proxy. You can use ``-noonion``
+  to explicitly disable access to hidden service.
 
--listen         When using -proxy, listening is disabled by default. If you want
-	        to run a hidden service (see next section), you'll need to enable
-	        it explicitly.
+-listen
+  When using -proxy, listening is disabled by default. If you want
+  to run a hidden service (see next section), you'll need to enable
+  it explicitly.
 
--connect=X      When behind a Tor proxy, you can specify .onion addresses instead
--addnode=X      of IP addresses or hostnames in these parameters. It requires
--seednode=X     SOCKS5. In Tor mode, such addresses can also be exchanged with
-	        other P2P nodes.
+-connect=X, -addnode=X, -seednode=X
+  When behind a Tor proxy, you can specify .onion addresses instead
+  of IP addresses or hostnames in these parameters. It requires
+  SOCKS5. In Tor mode, such addresses can also be exchanged with
+  other P2P nodes.
 
 In a typical situation, this suffices to run behind a Tor proxy:
-
 .. code-block::
    
   $ zcashd -proxy=127.0.0.1:9050
@@ -43,7 +46,6 @@ In a typical situation, this suffices to run behind a Tor proxy:
 If you configure your Tor system accordingly, it is possible to make your node also
 reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equivalent
 config file):
-
 .. code-block::
   
   HiddenServiceDir /var/lib/tor/zcash-service/
@@ -72,7 +74,6 @@ your zcashd's P2P listen port (8233 by default).
 	        linkable using traffic analysis.
 
 In a typical situation, where you're only reachable via Tor, this should suffice:
-
 .. code-block::
    
   $ zcashd -proxy=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -listen
@@ -80,14 +81,12 @@ In a typical situation, where you're only reachable via Tor, this should suffice
 (obviously, replace the Onion address with your own). It should be noted that you still
 listen on all devices and another node could establish a clearnet connection, when knowing
 your address. To mitigate this, additionally bind the address of your Tor proxy:
-
 .. code-block::
    
   $ zcashd ... -bind=127.0.0.1
 
 If you don't care too much about hiding your node, and want to be reachable on IPv4
 as well, use ``discover`` instead:
-
 .. code-block::
    
   $ zcashd ... -discover
@@ -96,7 +95,6 @@ and open port 8233 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:
-
 .. code-block::
    
   $ zcashd -onion=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -discover
@@ -137,13 +135,11 @@ Tor configuration.
 
 To test your set-up, you might want to try connecting via Tor on a different computer to just a
 a single Zcash hidden server. Launch zcashd as follows:
-
 .. code-block::
    
   $ zcashd -onion=127.0.0.1:9050 -connect=zctestseie6wxgio.onion
 
 Now use zcash-cli to verify there is only a single peer connection.
-
 .. code-block::
    
   $ zcash-cli getpeerinfo
@@ -160,7 +156,6 @@ Now use zcash-cli to verify there is only a single peer connection.
   ]
 
 To connect to multiple Tor nodes, use:
-  
 .. code-block::
    
   $ zcashd -onion=127.0.0.1:9050 -addnode=zctestseie6wxgio.onion -dnsseed=0 -onlynet=onion
