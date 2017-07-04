@@ -24,6 +24,7 @@ outgoing connections be anonymized, but more is possible.
   to explicitly disable access to hidden service.
 
 -listen
+  
   When using -proxy, listening is disabled by default. If you want
   to run a hidden service (see next section), you'll need to enable
   it explicitly.
@@ -35,7 +36,6 @@ outgoing connections be anonymized, but more is possible.
   other P2P nodes.
 
 In a typical situation, this suffices to run behind a Tor proxy:
-.. code-block::
    
   $ zcashd -proxy=127.0.0.1:9050
 
@@ -46,7 +46,6 @@ In a typical situation, this suffices to run behind a Tor proxy:
 If you configure your Tor system accordingly, it is possible to make your node also
 reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equivalent
 config file):
-.. code-block::
   
   HiddenServiceDir /var/lib/tor/zcash-service/
   HiddenServicePort 8233 127.0.0.1:8233
@@ -55,39 +54,41 @@ config file):
 The directory can be different of course, but (both) port numbers should be equal to
 your zcashd's P2P listen port (8233 by default).
 
--externalip=X   You can tell Zcash about its publicly reachable address using
-	        this option, and this can be a .onion address. Given the above
-	        configuration, you can find your onion address in
-	        ``/var/lib/tor/zcash-service/hostname``. Onion addresses are given
-	        preference for your node to advertize itself with, for connections
-	        coming from unroutable addresses (such as 127.0.0.1, where the
-	        Tor proxy typically runs).
+-externalip=X
+  You can tell Zcash about its publicly reachable address using
+  this option, and this can be a .onion address. Given the above
+  configuration, you can find your onion address in
+  ``/var/lib/tor/zcash-service/hostname``. Onion addresses are given
+  preference for your node to advertize itself with, for connections
+  coming from unroutable addresses (such as 127.0.0.1, where the
+  Tor proxy typically runs).
 
--listen         You'll need to enable listening for incoming connections, as this
-	        is off by default behind a proxy.
+-listen
 
--discover       When -externalip is specified, no attempt is made to discover local
-	        IPv4 or IPv6 addresses. If you want to run a dual stack, reachable
-	        from both Tor and IPv4 (or IPv6), you'll need to either pass your
-	        other addresses using -externalip, or explicitly enable -discover.
-	        Note that both addresses of a dual-stack system may be easily
-	        linkable using traffic analysis.
+  You'll need to enable listening for incoming connections, as this
+  is off by default behind a proxy.
+
+-discover
+
+  When -externalip is specified, no attempt is made to discover local
+  IPv4 or IPv6 addresses. If you want to run a dual stack, reachable
+  from both Tor and IPv4 (or IPv6), you'll need to either pass your
+  other addresses using -externalip, or explicitly enable -discover.
+  Note that both addresses of a dual-stack system may be easily
+  linkable using traffic analysis.
 
 In a typical situation, where you're only reachable via Tor, this should suffice:
-.. code-block::
    
   $ zcashd -proxy=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -listen
 
 (obviously, replace the Onion address with your own). It should be noted that you still
 listen on all devices and another node could establish a clearnet connection, when knowing
 your address. To mitigate this, additionally bind the address of your Tor proxy:
-.. code-block::
    
   $ zcashd ... -bind=127.0.0.1
 
 If you don't care too much about hiding your node, and want to be reachable on IPv4
 as well, use ``discover`` instead:
-.. code-block::
    
   $ zcashd ... -discover
 
@@ -95,7 +96,6 @@ and open port 8233 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:
-.. code-block::
    
   $ zcashd -onion=127.0.0.1:9050 -externalip=zctestseie6wxgio.onion -discover
 
@@ -135,12 +135,10 @@ Tor configuration.
 
 To test your set-up, you might want to try connecting via Tor on a different computer to just a
 a single Zcash hidden server. Launch zcashd as follows:
-.. code-block::
    
   $ zcashd -onion=127.0.0.1:9050 -connect=zctestseie6wxgio.onion
 
 Now use zcash-cli to verify there is only a single peer connection.
-.. code-block::
    
   $ zcash-cli getpeerinfo
 
@@ -156,6 +154,5 @@ Now use zcash-cli to verify there is only a single peer connection.
   ]
 
 To connect to multiple Tor nodes, use:
-.. code-block::
    
   $ zcashd -onion=127.0.0.1:9050 -addnode=zctestseie6wxgio.onion -dnsseed=0 -onlynet=onion
