@@ -62,9 +62,8 @@ Accounting
    :widths: 15 15 30
    :header: "Command", "Parameters", "Description"
 
-
-   z_getbalance, address [minconf=1], |z_getbalance description|
-   z_gettotalbalance, [minconf=1], |z_gettotalbalance description|
+   ``z_getbalance``, "address [minconf=1]", |z_getbalance description|
+   ``z_gettotalbalance``, "[minconf=1]", |z_gettotalbalance description|
 
  .. |z_getbalance description| replace::
 				 
