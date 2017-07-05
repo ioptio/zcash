@@ -57,37 +57,38 @@ memo
 
 Accounting
 ~~~~~~~~~~
-
-.. csv-table::
-   :widths: 15 15 30
-   :header: "Command", "Parameters", "Description"
-
-   ``z_getbalance``, "address [minconf=1]", |z_getbalance description|
-   ``z_gettotalbalance``, "[minconf=1]", |z_gettotalbalance description|
++-----------------------+---------------------+---------------------------------+
+| Command               | Parameters          | Description                     |
++=======================+=====================+=================================+
+| ``z_getbalance``      | address [minconf=1] | |z_getbalance description|      |
++-----------------------+---------------------+---------------------------------+
+| ``z_gettotalbalance`` | [minconf=1]         | |z_gettotalbalance description| |
++-----------------------+---------------------+---------------------------------+
+	    
 
  .. |z_getbalance description| replace::
 				 
-   "Returns the balance of a taddr or zaddr belonging to the node’s wallet.
+   Returns the balance of a taddr or zaddr belonging to the node’s wallet.
        
    Optionally set the minimum number of confirmations a private or transaction
    must have in order to be included in the balance. Use 0 to count unconfirmed
-   transactions."
+   transactions.
 
  .. |z_gettotalbalance description| replace::
 					      
-   "Return the total value of funds stored in the node’s wallet.
+   Return the total value of funds stored in the node’s wallet.
        
    Optionally set the minimum number of confirmations a private or transparent
    transaction must have in order to be included in the balance. Use 0 to count
    unconfirmed transactions.
        
-   Output:
+   Output
    
 	 {
            "transparent" : 1.23,
            "private" : 4.56,
            "total" : 5.79
-         } "
+         }
        
 ### Addresses
 
