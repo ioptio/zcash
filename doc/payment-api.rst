@@ -57,45 +57,70 @@ memo
 
 Accounting
 ~~~~~~~~~~
-+-----------------------+---------------------+--------------------------------------+
-| Command               | Parameters          | Description                          |
-+=======================+=====================+======================================+
-| ``z_getbalance``      | address [minconf=1] | | Returns the balance of a taddr or  |
-|                       |                     | | zaddr belonging to the node’s      |
-|                       |                     | | wallet. Optionally set the minimum |
-|                       |                     | | number of confirmations a private  |
-|                       |                     | | or transaction must have in order  |
-|                       |                     | | to be included in the balance. Use |
-|                       |                     | | 0 to count unconfirmed             |
-|                       |                     | | transactions.                      |
-+-----------------------+---------------------+--------------------------------------+
-| ``z_gettotalbalance`` | [minconf=1]         |                                      |
-|                       |                     | | Return the total value of funds    |
-|                       |                     | | stored in the node’s wallet.       |
-|                       |                     | | Optionally set the minimum number  |
-|                       |                     | | of confirmations a private or      |
-|                       |                     | | transparent transaction must have  |
-|                       |                     | | in order to be included in the     |
-|                       |                     | | balance. Use 0 to count            |
-|                       |                     | | unconfirmed transactions.          |
-|                       |                     | | Output:                            |
-|                       |                     |                                      |
-|                       |                     | .. parsed-literal::                  |
-|                       |                     |                                      |
-|                       |                     |    {                                 |
-|                       |                     |      "transparent" : 1.23,           |
-|                       |                     |      "private" : 4.56,               |
-|                       |                     |      "total" : 5.79                  |
-|                       |                     |    }                                 |
-+-----------------------+---------------------+--------------------------------------+
++-----------------------+---------------------+-------------------------------------------------------------------+
+| |c|                   | |p|                 | |d|                                                               |
++=======================+=====================+===================================================================+
+| ``z_getbalance``      | address [minconf=1] | | Returns the balance of a taddr or zaddr belonging to the node’s |
+|                       |                     | | wallet. Optionally set the minimum number of confirmations a    |
+|                       |                     | | private or transaction must have in order to be included in the |
+|                       |                     | | balance. Use 0 to count unconfirmed transactions.               |
++-----------------------+---------------------+-------------------------------------------------------------------+
+| ``z_gettotalbalance`` | [minconf=1]         | | Return the total value of funds stored in the node’s wallet.    |
+|                       |                     | | Optionally set the minimum number of confirmations a private or |
+|                       |                     | | transparent transaction must have in order to be included in    |
+|                       |                     | | the balance. Use 0 to count unconfirmed transactions.           |
+|                       |                     | |                                                                 |
+|                       |                     | | Output:                                                         |
+|                       |                     |                                                                   |
+|                       |                     | .. parsed-literal::                                               |
+|                       |                     |                                                                   |
+|                       |                     |    {                                                              |
+|                       |                     |      "transparent" : 1.23,                                        |
+|                       |                     |      "private" : 4.56,                                            |
+|                       |                     |      "total" : 5.79                                               |
+|                       |                     |    }                                                              |
++-----------------------+---------------------+-------------------------------------------------------------------+
        
-### Addresses
+Addresses
+~~~~~~~~~
 
-Command | Parameters | Description
---- | --- | ---
-z_getnewaddress | | Return a new zaddr for sending and receiving payments. The spending key for this zaddr will be added to the node’s wallet.<br><br>Output:<br>zN68D8hSs3...
-z_listaddresses | | Returns a list of all the zaddrs in this node’s wallet for which you have a spending key.<br><br>Output:<br>{ [“z123…”, “z456...”, “z789...”] }
-z_validateaddress | | Return information about a given zaddr.<br><br>Output:<br>{"isvalid" : true,<br>"address" : "zcWsmq...",<br>"payingkey" : "f5bb3c...",<br>"transmissionkey" : "7a58c7...",<br>"ismine" : true}
++-----------------------+---------------------+-------------------------------------------------------------------+
+| |c|                   | |p|                 | |d|                                                               |
++=======================+=====================+===================================================================+
+| ``z_getnewaddress``   |                     | | Return a new zaddr for sending and receiving payments. The      |
+|                       |                     | | spending key for this zaddr will be added to the node’s wallet. |
+|                       |                     | |                                                                 |
+|                       |                     | | Output:                                                         |
+|                       |                     |                                                                   |
+|                       |                     | .. parsed-literal::                                               |
+|                       |                     |                                                                   |
+|                       |                     |    z123...                                                        |
++-----------------------+---------------------+-------------------------------------------------------------------+
+| ``z_listaddresses``   |                     | | Returns a list of all the zaddrs in this node’s wallet for      |
+|                       |                     | | which you have a spending key.                                  |
+|                       |                     | |                                                                 |
+|                       |                     | | Output:                                                         |
+|                       |                     |                                                                   |
+|                       |                     | .. parsed-literal::                                               |
+|                       |                     |                                                                   |
+|                       |                     |    {                                                              |
+|                       |                     |      [“z123...”, “z1ab...”, “z1cd...”]                            |
+|                       |                     |    }                                                              |
++-----------------------+---------------------+-------------------------------------------------------------------+
+| ``z_validateaddress`` | z-address           | | Return information about a given zaddr.                         |
+|                       |                     | |                                                                 |
+|                       |                     | | Output:                                                         |
+|                       |                     |                                                                   |
+|                       |                     | .. parsed-literal::                                               |
+|                       |                     |                                                                   |
+|                       |                     |    {                                                              |
+|                       |                     |      "isvalid" : true,                                            |
+|                       |                     |      "address" : "z123...",                                       |
+|                       |                     |      "payingkey" : "f5bb3c...",                                   |
+|                       |                     |      "transmissionkey" : "7a58c7...",                             |
+|                       |                     |      "ismine" : true                                              |
+|                       |                     |    }                                                              |
++-----------------------+---------------------+-------------------------------------------------------------------+
 
 ### Key Management
 
@@ -211,3 +236,8 @@ RPC_WALLET_ENCRYPTION_FAILED (-16)                                       | _Fail
 RPC_WALLET_KEYPOOL_RAN_OUT (-12)                                         | _Keypool ran out, call keypoolrefill first_
 -------------------------------------------------------------------------| -----------------------------------------------
 "Could not generate a taddr to use as a change address"                  | Call keypoolrefill and retry.
+
+
+.. |c| replace:: Command
+.. |p| replace:: Parameters
+.. |d| replace:: Description
