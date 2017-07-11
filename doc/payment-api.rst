@@ -57,79 +57,141 @@ memo
 
 Accounting
 ~~~~~~~~~~
-+-----------------------+---------------------+-------------------------------------------------------------------+
-| |c|                   | |p|                 | |d|                                                               |
-+=======================+=====================+===================================================================+
-| ``z_getbalance``      | address [minconf=1] | | Returns the balance of a taddr or zaddr belonging to the node’s |
-|                       |                     | | wallet. Optionally set the minimum number of confirmations a    |
-|                       |                     | | private or transaction must have in order to be included in the |
-|                       |                     | | balance. Use 0 to count unconfirmed transactions.               |
-+-----------------------+---------------------+-------------------------------------------------------------------+
-| ``z_gettotalbalance`` | [minconf=1]         | | Return the total value of funds stored in the node’s wallet.    |
-|                       |                     | | Optionally set the minimum number of confirmations a private or |
-|                       |                     | | transparent transaction must have in order to be included in    |
-|                       |                     | | the balance. Use 0 to count unconfirmed transactions.           |
-|                       |                     | |                                                                 |
-|                       |                     | | Output:                                                         |
-|                       |                     |                                                                   |
-|                       |                     | .. parsed-literal::                                               |
-|                       |                     |                                                                   |
-|                       |                     |    {                                                              |
-|                       |                     |      "transparent" : 1.23,                                        |
-|                       |                     |      "private" : 4.56,                                            |
-|                       |                     |      "total" : 5.79                                               |
-|                       |                     |    }                                                              |
-+-----------------------+---------------------+-------------------------------------------------------------------+
++-----------------------+---------------------+--------------------------------------------------------+
+| |c|                   | |p|                 | |d|                                                    |
++=======================+=====================+========================================================+
+| ``z_getbalance``      | address [minconf=1] | | Returns the balance of a taddr or zaddr belonging to |
+|                       |                     | | the node’s wallet. Optionally set the minimum number |
+|                       |                     | | of confirmations a private or transaction must have  |
+|                       |                     | | in order to be included in the balance. Use 0 to     |
+|                       |                     | | count unconfirmed transactions.                      |
++-----------------------+---------------------+--------------------------------------------------------+
+| ``z_gettotalbalance`` | [minconf=1]         | | Return the total value of funds stored in the node’s |
+|                       |                     | | wallet. Optionally set the minimum number of         |
+|                       |                     | | confirmations a private or transparent transaction   |
+|                       |                     | | must have in order to be included in the balance.    |
+|                       |                     | | Use 0 to count unconfirmed transactions.             |
+|                       |                     | |                                                      |
+|                       |                     | | Output:                                              |
+|                       |                     |                                                        |
+|                       |                     | .. parsed-literal::                                    |
+|                       |                     |                                                        |
+|                       |                     |    {                                                   |
+|                       |                     |      "transparent" : 1.23,                             |
+|                       |                     |      "private" : 4.56,                                 |
+|                       |                     |      "total" : 5.79                                    |
+|                       |                     |    }                                                   |
++-----------------------+---------------------+--------------------------------------------------------+
        
 Addresses
 ~~~~~~~~~
 
-+-----------------------+---------------------+-------------------------------------------------------------------+
-| |c|                   | |p|                 | |d|                                                               |
-+=======================+=====================+===================================================================+
-| ``z_getnewaddress``   |                     | | Return a new zaddr for sending and receiving payments. The      |
-|                       |                     | | spending key for this zaddr will be added to the node’s wallet. |
-|                       |                     | |                                                                 |
-|                       |                     | | Output:                                                         |
-|                       |                     |                                                                   |
-|                       |                     | .. parsed-literal::                                               |
-|                       |                     |                                                                   |
-|                       |                     |    z123...                                                        |
-+-----------------------+---------------------+-------------------------------------------------------------------+
-| ``z_listaddresses``   |                     | | Returns a list of all the zaddrs in this node’s wallet for      |
-|                       |                     | | which you have a spending key.                                  |
-|                       |                     | |                                                                 |
-|                       |                     | | Output:                                                         |
-|                       |                     |                                                                   |
-|                       |                     | .. parsed-literal::                                               |
-|                       |                     |                                                                   |
-|                       |                     |    {                                                              |
-|                       |                     |      [“z123...”, “z1ab...”, “z1cd...”]                            |
-|                       |                     |    }                                                              |
-+-----------------------+---------------------+-------------------------------------------------------------------+
-| ``z_validateaddress`` | z-address           | | Return information about a given zaddr.                         |
-|                       |                     | |                                                                 |
-|                       |                     | | Output:                                                         |
-|                       |                     |                                                                   |
-|                       |                     | .. parsed-literal::                                               |
-|                       |                     |                                                                   |
-|                       |                     |    {                                                              |
-|                       |                     |      "isvalid" : true,                                            |
-|                       |                     |      "address" : "z123...",                                       |
-|                       |                     |      "payingkey" : "f5bb3c...",                                   |
-|                       |                     |      "transmissionkey" : "7a58c7...",                             |
-|                       |                     |      "ismine" : true                                              |
-|                       |                     |    }                                                              |
-+-----------------------+---------------------+-------------------------------------------------------------------+
++-----------------------+---------------------+--------------------------------------------------------+
+| |c|                   | |p|                 | |d|                                                    |
++=======================+=====================+========================================================+
+| ``z_getnewaddress``   |                     | | Return a new zaddr for sending and receiving         |
+|                       |                     | | payments. The spending key for this zaddr will be    |
+|                       |                     | | added to the node’s wallet.                          |
+|                       |                     | |                                                      |
+|                       |                     | | Output:                                              |
+|                       |                     |                                                        |
+|                       |                     | .. parsed-literal::                                    |
+|                       |                     |                                                        |
+|                       |                     |    zc123...                                            |
++-----------------------+---------------------+--------------------------------------------------------+
+| ``z_listaddresses``   |                     | | Returns a list of all the zaddrs in this node’s      |
+|                       |                     | | wallet for which you have a spending key.            |
+|                       |                     | |                                                      |
+|                       |                     | | Output:                                              |
+|                       |                     |                                                        |
+|                       |                     | .. parsed-literal::                                    |
+|                       |                     |                                                        |
+|                       |                     |    {                                                   |
+|                       |                     |      [“zc123...”, “zc456...”, “zc789...”]              |
+|                       |                     |    }                                                   |
++-----------------------+---------------------+--------------------------------------------------------+
+| ``z_validateaddress`` | z-address           | | Return information about a given zaddr.              |
+|                       |                     | |                                                      |
+|                       |                     | | Output:                                              |
+|                       |                     |                                                        |
+|                       |                     | .. parsed-literal::                                    |
+|                       |                     |                                                        |
+|                       |                     |    {                                                   |
+|                       |                     |      "isvalid" : true,                                 |
+|                       |                     |      "address" : "zc123...",                           |
+|                       |                     |      "payingkey" : "f5bb3c...",                        |
+|                       |                     |      "transmissionkey" : "7a58c7...",                  |
+|                       |                     |      "ismine" : true                                   |
+|                       |                     |    }                                                   |
++-----------------------+---------------------+--------------------------------------------------------+
 
-### Key Management
+Key Management
+~~~~~~~~~~~~~~~
 
-Command | Parameters | Description
---- | --- | ---
-z_exportkey | zaddr | _Requires an unlocked wallet or an unencrypted wallet._<br><br>Return a zkey for a given zaddr belonging to the node’s wallet.<br><br>The key will be returned as a string formatted using Base58Check as described in the Zcash protocol spec.<br><br>Output:AKWUAkypwQjhZ6LLNaMuuuLcmZ6gt5UFyo8m3jGutvALmwZKLdR5
-z_importkey | zkey [rescan=true] | _Wallet must be unlocked._<br><br>Add a zkey as returned by z_exportkey to a node's wallet.<br><br>The key should be formatted using Base58Check as described in the Zcash protocol spec.<br><br>Set rescan to true (the default) to rescan the entire local block database for transactions affecting any address or pubkey script in the wallet (including transactions affecting the newly-added address for this spending key).
-z_exportwallet | filename | _Requires an unlocked wallet or an unencrypted wallet._<br><br>Creates or overwrites a file with taddr private keys and zaddr private keys in a human-readable format.<br><br>Filename is the file in which the wallet dump will be placed. May be prefaced by an absolute file path. An existing file with that name will be overwritten.<br><br>No value is returned but a JSON-RPC error will be reported if a failure occurred.
-z_importwallet | filename | _Requires an unlocked wallet or an unencrypted wallet._<br><br>Imports private keys from a file in wallet export file format (see z_exportwallet). These keys will be added to the keys currently in the wallet. This call may need to rescan all or parts of the block chain for transactions affecting the newly-added keys, which may take several minutes.<br><br>Filename is the file to import. The path is relative to zcashd’s working directory.<br><br>No value is returned but a JSON-RPC error will be reported if a failure occurred.
++-----------------------+---------------------+--------------------------------------------------------+
+| |c|                   | |p|                 | |d|                                                    |
++=======================+=====================+========================================================+
+| ``z_exportkey``       | z-address           | | Return a  private key for a given zaddr belonging to |
+|                       |                     | | the node’s wallet.                                   |
+|                       |                     | |                                                      |
+|                       |                     | | The key will be returned as a string formatted using |
+|                       |                     | | Base58Check as described in the Zcash protocol spec. |
+|                       |                     | |                                                      |
+|                       |                     | | Output:                                              |
+|                       |                     |                                                        |
+|                       |                     | .. parsed-literal::                                    |
+|                       |                     |                                                        |
+|                       |                     |    SKxyN...                                            |
++-----------------------+---------------------+--------------------------------------------------------+
+| ``z_importkey``       | zkey [rescan=true]  | | Add a private key as returned by z_exportkey to a    |
+|                       |                     | | node's wallet.                                       |
+|                       |                     | |                                                      |
+|                       |                     | | The key should be formatted using Base58Check as     |
+|                       |                     | | described in the Zcash protocol spec.                |
+|                       |                     | |                                                      |
+|                       |                     | | Set rescan to true (the default) to rescan the       |
+|                       |                     | | entire local block database for transactions         |
+|                       |                     | | affecting any address or pubkey script in the wallet |
+|                       |                     | | (including transactions affecting the newly-added    |
+|                       |                     | | address for this spending key).                      |
++-----------------------+---------------------+--------------------------------------------------------+
+| ``z_exportwallet``    | filename            | | Creates or overwrites a file with taddr private keys |
+|                       |                     | | and zaddr private keys in a human-readable format.   |
+|                       |                     | |                                                      |
+|                       |                     | | Filename is the file in which the wallet dump will   |
+|                       |                     | | be placed. An existing file with that name will be   |
+|                       |                     | | overwritten. File is located in the export directory | 
+|                       |                     | | set with:                                            |
+|                       |                     |                                                        |
+|                       |                     | .. parsed-literal::                                    |
+|                       |                     |                                                        |
+|                       |                     |    exportdir=/path/to/chosen/export/directory          |
+|                       |                     |                                                        |
+|                       |                     | | in ``zcash.conf``.                                   |
+|                       |                     | |                                                      |
+|                       |                     | | No value is returned but a JSON-RPC error will be    |
+|                       |                     | | reported if a failure occurred.                      |
++-----------------------+---------------------+--------------------------------------------------------+
+| ``z_importwallet``    | filename            | | Imports private keys from a file in wallet export    |
+|                       |                     | | file format (see ``z_exportwallet``). These keys     |
+|                       |                     | | will be added to the keys currently in the wallet.   |
+|                       |                     | | This call may need to rescan all or parts of the     |
+|                       |                     | | blockchain for transactions affecting the newly      |
+|                       |                     | | added keys, which may take several minutes.          | 
+|                       |                     | |                                                      |
+|                       |                     | | Filename is the file to import located in the export | 
+|                       |                     | | directory set with:                                  |
+|                       |                     |                                                        |
+|                       |                     | .. parsed-literal::                                    |
+|                       |                     |                                                        |
+|                       |                     |    exportdir=/path/to/chosen/export/directory          |
+|                       |                     |                                                        |
+|                       |                     | | in ``zcash.conf``.                                   |
+|                       |                     | |                                                      |
+|                       |                     | | No value is returned but a JSON-RPC error will be    |
+|                       |                     | | reported if a failure occurred.                      |
++-----------------------+---------------------+--------------------------------------------------------+
+
 
 ### Payment
 
